@@ -22,17 +22,17 @@ class Page(models.Model):
     )
     registration_required = models.BooleanField(
         _('registration required'),
+        default=False,
         help_text=_(
             "If this is checked, only logged-in users will be able to view "
             "the page."
         ),
-        default=False
     )
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ('url',)
+        ordering = ('url', '-created_date')
 
     def __str__(self):
         return "%s -- %s" % (self.url, self.title)
