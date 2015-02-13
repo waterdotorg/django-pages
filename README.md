@@ -1,5 +1,7 @@
 ABOUT
 -----
+An alternative to Django flatpages without the sites requirement, but with 
+some newer features.
 
 QUICK START
 -----------
