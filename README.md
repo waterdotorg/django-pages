@@ -13,6 +13,14 @@ Add 'pages' to settings file:
         ...
     )
 
+Add 'PageFallbackMiddleware' to settings file:
+
+    MIDDLEWARE_CLASSES = (
+        ...
+        'pages.middleware.PageFallbackMiddleware',
+        ...
+    )
+
 Update database:
 
     $ manage.py syncdb
