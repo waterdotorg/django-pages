@@ -15,7 +15,7 @@ class PageAdmin(admin.ModelAdmin):
         }),
     )
     list_display = ('url', 'title')
-    list_filter = ('registration_required')
+    list_filter = ('registration_required',)
     search_fields = ('url', 'title')
 
 admin.site.register(Page, PageAdmin)
