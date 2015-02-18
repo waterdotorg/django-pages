@@ -6,12 +6,10 @@ some newer features.
 QUICK START
 -----------
 
-Settings
+SETTINGS
 --------
 
-## PAGE_TEMPLATES
-
-Default::
+**Page Templates** Default::
 
     PAGE_TEMPLATES = (
         ('pages/default.html', 'Default'),
