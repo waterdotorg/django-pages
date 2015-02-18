@@ -30,6 +30,10 @@ class Page(models.Model):
             "the page."
         ),
     )
+    published = models.BooleanField(
+        _('published'),
+        default=True,
+    )
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
