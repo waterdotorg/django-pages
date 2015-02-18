@@ -6,6 +6,26 @@ some newer features.
 QUICK START
 -----------
 
+Settings
+--------
+
+## PAGE_TEMPLATES
+
+Default::
+
+    PAGE_TEMPLATES = (
+        ('pages/default.html', 'Default'),
+    )
+
+A list of two-tuples in the format (``filename``, ``template name``). 
+
+You can add more template choices by extending this list::
+
+    PAGE_TEMPLATES = (
+        ('pages/default.html', 'Default'),
+        ('pages/two-column.html', 'Two Column'),
+    )
+
 LICENSE
 -------
 Copyright (C) 2014

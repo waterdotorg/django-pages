@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.conf import settings
 from django.core.urlresolvers import get_script_prefix
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import iri_to_uri, python_2_unicode_compatible
@@ -8,17 +9,17 @@ from django.utils.encoding import iri_to_uri, python_2_unicode_compatible
 
 @python_2_unicode_compatible
 class Page(models.Model):
+    TEMPLATE_CHOICES = getattr(settings, 'PAGE_TEMPLATES', (
+        ('pages/default.html', 'Default'),
+    ))
+
     url = models.CharField(_('URL'), max_length=100, db_index=True)
     title = models.CharField(_('title'), max_length=200)
     content = models.TextField(_('content'), blank=True)
     template_name = models.CharField(
         _('template name'),
-        max_length=70,
-        blank=True,
-        help_text=_(
-            "Example: 'pages/about.html'. If this isn't provided, "
-            "the system will use 'pages/default.html'."
-        )
+        max_length=100,
+        choices=TEMPLATE_CHOICES,
     )
     registration_required = models.BooleanField(
         _('registration required'),
