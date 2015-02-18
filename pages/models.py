@@ -20,6 +20,7 @@ class Page(models.Model):
         _('template name'),
         max_length=100,
         choices=TEMPLATE_CHOICES,
+        default=TEMPLATE_CHOICES[0][0],
     )
     registration_required = models.BooleanField(
         _('registration required'),
