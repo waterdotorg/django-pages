@@ -10,11 +10,11 @@ class PageAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('url', 'title', 'content')}),
         (_('Advanced'), {
-            'fields': ('registration_required', 'template_name')
+            'fields': ('registration_required', 'published', 'template_name')
         }),
     )
-    list_display = ('url', 'title')
-    list_filter = ('registration_required',)
+    list_display = ('url', 'title', 'published', 'created_date')
+    list_filter = ('registration_required', 'published')
     search_fields = ('url', 'title')
 
 admin.site.register(Page, PageAdmin)
