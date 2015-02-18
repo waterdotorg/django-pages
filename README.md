@@ -5,6 +5,19 @@ some newer features.
 
 QUICK START
 -----------
+Add 'pages' to settings file:
+
+    INSTALLED_APPS = (
+        ...
+        'pages'
+        ...
+    )
+
+Update database:
+
+    $ manage.py syncdb
+
+Create **pages/default.html** for page template choice.
 
 SETTINGS
 --------
