@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.cache import cache 
 from django.http import Http404, HttpResponse, HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.template import loader, RequestContext
@@ -12,16 +13,26 @@ def page(request, url):
     if not url.startswith('/'):
         url = '/' + url
 
+    if not url.endswith('/') and settings.APPEND_SLASH:
+        return HttpResponsePermanentRedirect('%s/' % request.path)
+
+    page_cache = cache.get(url)
+
+    if page_cache:
+        return page_cache
+
     try:
         obj = get_object_or_404(Page, url__iexact=url, published=True)
     except Http404:
-        if not url.endswith('/') and settings.APPEND_SLASH:
-            url += '/'
-            obj = get_object_or_404(Page, url__iexact=url, published=True)
-            return HttpResponsePermanentRedirect('%s/' % request.path)
-        else:
-            raise
-    return render_page(request, obj)
+        raise
+
+    rp = render_page(request, obj)
+
+    page_cache_timeout = getattr(settings, 'PAGE_CACHE_TIMEOUT', 300)
+
+    cache.set(url, rp, page_cache_timeout)
+
+    return rp
 
 
 @csrf_protect

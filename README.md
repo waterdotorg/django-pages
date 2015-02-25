@@ -45,6 +45,10 @@ You can add more template choices by extending this list::
         ('pages/two-column.html', 'Two Column'),
     )
 
+Page cache defalut timeout value:
+
+    PAGE_CACHE_TIMEOUT = 300
+
 LICENSE
 -------
 Copyright (C) 2014
